@@ -6,7 +6,7 @@
 .navbar {
   // scss-docs-start navbar-css-vars
   --#{$prefix}navbar-padding-x: #{if($navbar-padding-x == null, 0, $navbar-padding-x)};
-  --#{$prefix}navbar-padding-y: #{$navbar-padding-y};
+  --#{$prefix}navbar-padding-y: 30px;
   --#{$prefix}navbar-color: #{$navbar-light-color};
   --#{$prefix}navbar-hover-color: #{$navbar-light-hover-color};
   --#{$prefix}navbar-disabled-color: #{$navbar-light-disabled-color};
@@ -25,8 +25,9 @@
   --#{$prefix}navbar-toggler-border-radius: #{$navbar-toggler-border-radius};
   --#{$prefix}navbar-toggler-focus-width: #{$navbar-toggler-focus-width};
   --#{$prefix}navbar-toggler-transition: #{$navbar-toggler-transition};
+  
   // scss-docs-end navbar-css-vars
-
+;
   position: relative;
   display: flex;
   flex-wrap: wrap; // allow us to do the line break for collapsing content
@@ -65,15 +66,17 @@
 .navbar-brand {
   padding-top: var(--#{$prefix}navbar-brand-padding-y);
   padding-bottom: var(--#{$prefix}navbar-brand-padding-y);
-  margin-right: var(--#{$prefix}navbar-brand-margin-end);
-  @include font-size(var(--#{$prefix}navbar-brand-font-size));
-  color: var(--#{$prefix}navbar-brand-color);
+  margin-right: 80px;
+  margin-bottom: 5px;
+  margin-left: 20px;
+  font-size: 25px;
+  color: #f8c280;
   text-decoration: if($link-decoration == none, null, none);
   white-space: nowrap;
-
+  font-family:monospace;
   &:hover,
   &:focus {
-    color: var(--#{$prefix}navbar-brand-hover-color);
+    color: #b8956d;
     text-decoration: if($link-hover-decoration == underline, none, null);
   }
 }
@@ -103,7 +106,10 @@
   .nav-link {
     &.active,
     &.show {
-      color: var(--#{$prefix}navbar-active-color);
+      color: #f8c280;
+      font-family:monospace;
+      font-size: 20px;
+
     }
   }
 
