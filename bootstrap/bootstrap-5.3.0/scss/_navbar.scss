@@ -66,10 +66,10 @@
 .navbar-brand {
   padding-top: var(--#{$prefix}navbar-brand-padding-y);
   padding-bottom: var(--#{$prefix}navbar-brand-padding-y);
-  margin-right: 80px;
+  margin-right: 70px;
   margin-bottom: 5px;
   margin-left: 20px;
-  font-size: 25px;
+  font-size: 30px;
   color: #f8c280;
   text-decoration: if($link-decoration == none, null, none);
   white-space: nowrap;

@@ -11,7 +11,7 @@
 <body >
    <nav class="navbar sticky-top navbar-expand navbar-light bg-success ">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Tunein</a>
+            <a class="navbar-brand font-family-monospace" href="#">Tunein</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarID"
                 aria-controls="navbarID" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -19,17 +19,30 @@
             <div class="collapse navbar-collapse" id="navbarID">
                 <div class="navbar-nav">
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    
+                    <a href="./vhod.html" class="btn btn-light position-absolute end-0">Вход</a>
+                    <a id="btton1" href="./formaregistrazii.html" class="btn btn-light position-absolute end-0">Регистрация</a>
                 </div>
             </div>
         </div>
     </nav>
+
     <section class="text">
         <video autoplay muted loop>
           <source src="./top_view_of_vinyl_record.mp4" type="video/mp4">
         </video>
         <h3>Tunein</h3>
-      </section>
+    </section>
+    <div class="wrap">
+        <div class="element-big black"></div>
+        <div class="element-animation">
+          <span>Tunein - лучшая платформа для выбора радиостанций</span>
+        </div>
+        <div class="element-big red"></div>
+      </div>
+
+    
+
     <script src="./bootstrap/bootstrap-5.3.0/dist/js/bootstrap.js"></script>
+    <script src="./script.js"></script>
 </body>
 </html>
