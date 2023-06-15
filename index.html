@@ -1,15 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./bootstrap/bootstrap-5.3.0/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="./styles.css">
-    <link rel="shortcut icon" href="./탈모인포-2048x2048.png" type="image/x-icon">
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link rel="stylesheet" href="./bootstrap/bootstrap-5.3.0/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="./CSS/styles.css">
+        <link rel="shortcut icon" href="./PICTURES/탈모인포-2048x2048.png" type="image/x-icon">
+        
+        <script src="./libs/gsap/gsap.min.js" defer></script>
+        <script src="./libs/gsap/ScrollTrigger.min.js" defer></script>
+        <script src="./libs/gsap/ScrollSmoother.min.js" defer></script>
+        <script src="./JS/script.js" defer></script>
+        <script src="./bootstrap/bootstrap-5.3.0/dist/js/bootstrap.js" defer></script>
+
+   
     <title>Document</title>
 </head>
 <body >
-   <nav class="navbar sticky-top navbar-expand navbar-light bg-success ">
+
+    <nav class="navbar sticky-top navbar-expand navbar-light bg-success ">
         <div class="container-fluid">
             <a class="navbar-brand font-family-monospace" href="#">Tunein</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarID"
@@ -19,30 +30,23 @@
             <div class="collapse navbar-collapse" id="navbarID">
                 <div class="navbar-nav">
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    <a href="./vhod.html" class="btn btn-light position-absolute end-0">Вход</a>
-                    <a id="btton1" href="./formaregistrazii.html" class="btn btn-light position-absolute end-0">Регистрация</a>
+                    <a href="#" class="btn btn-light position-absolute end-0">Вход</a>
+                    <a id="btton1" href="#" class="btn btn-light position-absolute end-0 mr-5">Регистрация</a>
                 </div>
             </div>
         </div>
     </nav>
 
     <section class="text">
-        <video autoplay muted loop>
-          <source src="./top_view_of_vinyl_record.mp4" type="video/mp4">
+         <video autoplay muted loop>
+            <source src="./PICTURES/top_view_of_vinyl_record.mp4" type="video/mp4">
         </video>
         <h3>Tunein</h3>
     </section>
-    <div class="wrap">
-        <div class="element-big black"></div>
-        <div class="element-animation">
-          <span>Tunein - лучшая платформа для выбора радиостанций</span>
-        </div>
-        <div class="element-big red"></div>
-      </div>
+    <div class="main-header">
+        <h1 class="main-title">tunein - современная платформа для выбора радиостанций</h1>
+    </div>
 
     
-
-    <script src="./bootstrap/bootstrap-5.3.0/dist/js/bootstrap.js"></script>
-    <script src="./script.js"></script>
 </body>
 </html>

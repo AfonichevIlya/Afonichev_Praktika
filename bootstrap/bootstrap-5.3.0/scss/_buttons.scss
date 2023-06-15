@@ -4,8 +4,8 @@
 
 .btn {
   // scss-docs-start btn-css-vars
-  --#{$prefix}btn-padding-x: #{$btn-padding-x};
-  --#{$prefix}btn-padding-y: #{$btn-padding-y};
+  --#{$prefix}btn-padding-x: 15px;
+  --#{$prefix}btn-padding-y: 8px;
   --#{$prefix}btn-font-family: #{$btn-font-family};
   @include rfs($btn-font-size, --#{$prefix}btn-font-size);
   --#{$prefix}btn-font-weight: #{$btn-font-weight};
@@ -14,7 +14,7 @@
   --#{$prefix}btn-bg: transparent;
   --#{$prefix}btn-border-width: #{$btn-border-width};
   --#{$prefix}btn-border-color: transparent;
-  --#{$prefix}btn-border-radius: #{$btn-border-radius};
+  --#{$prefix}btn-border-radius: 4px;
   --#{$prefix}btn-hover-border-color: transparent;
   --#{$prefix}btn-box-shadow: #{$btn-box-shadow};
   --#{$prefix}btn-disabled-opacity: #{$btn-disabled-opacity};
