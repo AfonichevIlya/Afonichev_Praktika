@@ -4,6 +4,7 @@ if (ScrollTrigger.isTouch !== 1) {
 	ScrollSmoother.create({
 		wrapper: ".ScrollSmoother-wrapper",
 		content: ".content",
+		smooth : true,
 		smoothSpeed: 1.5,
 		effects: true,
 	});

@@ -1,8 +1,10 @@
+// Получаем элементы со страницы
 const countrySelect = document.querySelector('#country-select');
 const genreSelect = document.querySelector('#genre-select');
 const searchButton = document.querySelector('#search-button');
 const stationsContainer = document.querySelector('#stations-container');
 
+// Функция для получения данных с API RadioBrowser
 async function getStations(country, genre) {
   try {
     const response = await fetch(`https://de1.api.radio-browser.info/json/stations/bycountry/${country}`);
@@ -31,6 +33,7 @@ function renderStations(stations) {
   });
   stationsContainer.appendChild(playlist);
 }
+
 // Обработчик события для кнопки поиска станций
 searchButton.addEventListener('click', async () => {
   const country = countrySelect.value;
@@ -58,7 +61,7 @@ async function getCurrentSong(station) {
 async function renderCurrentSong(station) {
   const currentSong = await getCurrentSong(station);
   const currentSongElement = document.createElement('div');
-  currentSongElement.textContent = `Сейчас играет:`+ `${currentSong}`;
+  currentSongElement.textContent = `Сейчас играет: ${currentSong}`;
   stationsContainer.appendChild(currentSongElement);
 }
 
@@ -76,13 +79,15 @@ async function getNextSong(station) {
     return null;
   }
 }
+
 // Функция для отображения информации о следующей песне на станции
 async function renderNextSong(station) {
   const nextSong = await getNextSong(station);
   const nextSongElement = document.createElement('div');
-  nextSongElement.textContent = `Следующая песня:`+ `${nextSong}`;
+  nextSongElement.textContent = `Следующая песня: ${nextSong}`;
   stationsContainer.appendChild(nextSongElement);
 }
+
 // Функция для получения информации о предыдущей песне на станции
 async function getPrevSong(station) {
   try {
@@ -102,13 +107,12 @@ async function getPrevSong(station) {
 async function renderPrevSong(station) {
   const prevSong = await getPrevSong(station);
   const prevSongElement = document.createElement('div');
-  prevSongElement.textContent = `Предыдущая песня:`+` ${prevSong}`;
+  prevSongElement.textContent = `Предыдущая песня: ${prevSong}`;
   stationsContainer.appendChild(prevSongElement);
 }
 
 // Обработчик события для ссылок на станции
 stationsContainer.addEventListener('click', event => {
-  openStationLink(station.homepage);
   event.preventDefault();
   const stationLink = event.target;
   const station = { name: stationLink.textContent, url: stationLink.href };

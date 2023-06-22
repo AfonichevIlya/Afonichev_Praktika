@@ -2,7 +2,7 @@
 * {
 	margin: 0;
 	padding: 0;
-	box-sizing: border-box;
+	
 }
 @font-face {
 	font-family: raleway-c;
@@ -20,6 +20,9 @@
 	will-change: transform;
 }
 html {
+	background-color: #232e30;
+}
+body {
 	background-color: #232e30;
 }
 .text {
@@ -41,7 +44,6 @@ html {
 	top: 0;
 	left: 0;
 	width: 100%;
-	height: 100%;
 	object-fit: cover;
 }
 .text h3 {
@@ -64,9 +66,7 @@ html {
 	font-weight: 800;
 	border-bottom: 5px solid black;
 }
-body {
-	background-color: #232e30;
-}
+
 .navbar-nav {
 	position: absolute;
 	right: 0;
@@ -78,21 +78,15 @@ body {
 	color: #f8c280;
 }
 .main-header {
-	width: 100%;
-	max-height: max-content;
-	padding: 0 5vw;
-	overflow: hidden;
-	display: flex;
-	justify-content: center;
-	align-items: center;
 	color: #f8c280;
 	border-top: 1px solid #f8c280;
 }
 .main-title h1 {
 	padding: 1.5vw;
 	border-bottom: 1px solid #f8c280;
-	font-size: 3vw;
+	font-size: 2.5vw;
 	cursor: default;
+	text-align: center;
 }
 .portfolio {
 	display: flex;
@@ -122,32 +116,8 @@ body {
 .text-block__h {
 	font-size: 2.5vw;
 }
-
 .main__input {
-	display: flex;
-	justify-content: space-around;
-	flex-direction: row;
-	min-width: 100%;
-	margin-top: 5vw;
-	padding: 0 20vw 10vw;
 	color: #f8c280;
-
+	height: min-content;
 }
 
-#country-select {
-width: 200px;
-color: black;
-}
-#genre-select {
-width: 200px;
-color: black;
-}
-#search-button {
-width: max-content;
-max-height: 50px;
-}
-
-#stations-container {
-display: flex;
-flex-direction: column;
-}
