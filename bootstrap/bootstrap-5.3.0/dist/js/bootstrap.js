@@ -1,1 +1,0 @@
-gsap.registerPlugin(ScrollTrigger,ScrollSmoother),ScrollSmoother.create({wrapper:".ScrollSmoother-wrapper",content:".content",smoothSpeed:1.3,effects:!0});

@@ -90,26 +90,20 @@
           </main>
         </div>
         <div class="main__input">
-          <form>
-            <label for="city-select">Выберите страну радиостанции</label>
-            <select class="main__select" name="city" id="city-select">
-              <option value="">Страна</option>
-              <option value="petersburg">Санкт-Петербург</option>
-              <option value="samara">Самара</option>
-              <option value="perm">Пермь</option>
-              <option value="novosibirsk">Новосибирск</option>
-            </select>
-          </form>
-          <form>
-            <label for="city-select">Выберите жанр музыки</label>
-            <select class="main__select" name="city" id="city-select">
-              <option value="">Жанр</option>
-              <option value="petersburg">Санкт-Петербург</option>
-              <option value="samara">Самара</option>
-              <option value="perm">Пермь</option>
-              <option value="novosibirsk">Новосибирск</option>
-            </select>
-          </form>
+
+
+          <button id="search-button">Найти станции</button>
+          <div >
+            <label for="country-select">Страна:</label>
+            <select id="country-select">Выберите страну</select>
+          </div>
+          <div>
+            <label for="genre-select">Жанр:</label>
+            <select id="genre-select">Выберите жанр</select>
+          </div>
+          <div id="stations-container"></div>
+
+          
         </div>
       </div>
     </div>
@@ -120,6 +114,10 @@
     <script src="./libs/gsap/gsap.min.js" defer></script>
     <script src="./libs/gsap/ScrollTrigger.min.js" defer></script>
     <script src="./libs/gsap/ScrollSmoother.min.js" defer></script>
+    <script src="./JS/smooth.js" defer></script>
     <script src="./JS/script.js" defer></script>
-  </body>
+ </body>
 </html>
+
+
+

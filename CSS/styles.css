@@ -131,9 +131,23 @@ body {
 	margin-top: 5vw;
 	padding: 0 20vw 10vw;
 	color: #f8c280;
-	font-size: large;
+
 }
-.main__input .main__select {
-	color:#9ba5a5;
-	font-size: large;
+
+#country-select {
+width: 200px;
+color: black;
+}
+#genre-select {
+width: 200px;
+color: black;
+}
+#search-button {
+width: max-content;
+max-height: 50px;
+}
+
+#stations-container {
+display: flex;
+flex-direction: column;
 }
