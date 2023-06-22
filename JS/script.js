@@ -20,6 +20,7 @@ if (ScrollTrigger.isTouch !== 1) {
 			},
 		}
 	);
+
 	let itemsL = gsap.utils.toArray(".gallery__left .gallery__item");
 	itemsL.forEach((item) => {
 		gsap.fromTo(
@@ -30,7 +31,7 @@ if (ScrollTrigger.isTouch !== 1) {
 				x: 0,
 				scrollTrigger: {
 					trigger: item,
-					start: "-1000",
+					start: "-1050",
 					end: "-100",
 					scrub: true,
 				},
@@ -47,8 +48,8 @@ if (ScrollTrigger.isTouch !== 1) {
 				x: 0,
 				scrollTrigger: {
 					trigger: item,
-					start: "-1000",
-					end: "-200",
+					start: "-1050",
+					end: "-150",
 					scrub: true,
 				},
 			}
