@@ -1,125 +1,122 @@
-// Получаем элементы со страницы
-const countrySelect = document.querySelector('#country-select');
-const genreSelect = document.querySelector('#genre-select');
-const searchButton = document.querySelector('#search-button');
-const stationsContainer = document.querySelector('#stations-container');
+const countriesSelect = document.querySelector('#countries-select');
+const genresSelect = document.querySelector('#genres-select');
 
-// Функция для получения данных с API RadioBrowser
-async function getStations(country, genre) {
+
+const audio = document.querySelector('#audio-player');
+const nowPlaying = document.querySelector('#now-playing');
+const nextUp = document.querySelector('#next-up');
+const history = document.querySelector('#history');
+
+
+async function krData(strana) {
   try {
-    const response = await fetch(`https://de1.api.radio-browser.info/json/stations/bycountry/${country}`);
+    const response = await fetch(`https://de1.api.radio-browser.info/json/stations/bycountry/${strana}`);
     if (!response.ok) {
       throw new Error('Ошибка сети');
     }
     const data = await response.json();
-    const stations = data.filter(station => station.tags.includes(genre));
-    return stations;
+    return data;
   } catch (error) {
     console.error('Ошибка:', error);
     return [];
   }
 }
 
-// Функция для отображения списка станций
-function renderStations(stations) {
-  stationsContainer.innerHTML = '';
-  const playlist = document.createElement('div');
-  stations.forEach(station => {
+fetch( `https://de1.api.radio-browser.info/json/countries`)
+  .then(response => response.json())
+  .then(data => {
+    data.forEach(country => {
+      const option = document.createElement('option');
+      option.value = country.name;
+      option.textContent = country.name;
+      countriesSelect.appendChild(option);
+    });
+  });
+  const genres = ['pop', 'rock', 'jazz', 'classical', 'country', 'hiphop', 'blues'];
+  genres.forEach(genre => {
+    const option = document.createElement('option');
+    option.value = genre;
+    option.textContent = genre;
+    genresSelect.appendChild(option);
+  });
+  const searchButton = document.querySelector('#search-button');
+const stationsList = document.querySelector('#stations-list');
+
+searchButton.addEventListener('click', async () => {
+  const country = countriesSelect.value.trim();
+  const genre = genresSelect.value.trim();
+  if (country === '' || genre === '') {
+    alert('Выберите страну и жанр');
+    return;
+  }
+  const stations = await krData(country);
+  const matchingStations = stations.filter(station => station.tags.includes(genre));
+  if (matchingStations.length === 0) {
+    stationsList.textContent = `Станций с жанром "${genre}" не найдено`;
+    return;
+  }
+
+  stationsList.innerHTML = '';
+  matchingStations.forEach(station => {
     const stationLink = document.createElement('a');
     stationLink.href = station.homepage;
     stationLink.target = '_blank';
     stationLink.textContent = station.name;
-    stationsContainer.appendChild(stationLink);
+    const listItem = document.createElement('li');
+    listItem.appendChild(stationLink);
+    stationsList.appendChild(listItem);
   });
-  stationsContainer.appendChild(playlist);
-}
-
-// Обработчик события для кнопки поиска станций
-searchButton.addEventListener('click', async () => {
-  const country = countrySelect.value;
-  const genre = genreSelect.value;
-  const stations = await getStations(country, genre);
-  renderStations(stations);
 });
 
-// Функция для получения информации о текущей песне на станции
-async function getCurrentSong(station) {
-  try {
-    const response = await fetch(`https://de1.api.radio-browser.info/json/url/${station.url}`);
-    if (!response.ok) {
-      throw new Error('Ошибка сети');
-    }
-    const data = await response.json();
-    return data.now_playing;
-  } catch (error) {
-    console.error('Ошибка:', error);
-    return null;
-  }
+
+
+function playStation(station) {
+  audio.src = station.url_resolved;
+  audio.load();
+  audio.play();
+  nowPlaying.textContent = `Сейчас играет: ${station.name}`;
+  nextUp.textContent = '';
+  history.innerHTML = '';
 }
 
-// Функция для отображения информации о текущей песне на станции
-async function renderCurrentSong(station) {
-  const currentSong = await getCurrentSong(station);
-  const currentSongElement = document.createElement('div');
-  currentSongElement.textContent = `Сейчас играет: ${currentSong}`;
-  stationsContainer.appendChild(currentSongElement);
-}
-
-// Функция для получения информации о следующей песне на станции
-async function getNextSong(station) {
-  try {
-    const response = await fetch(`https://de1.api.radio-browser.info/json/url/${station.url}`);
-    if (!response.ok) {
-      throw new Error('Ошибка сети');
-    }
-    const data = await response.json();
-    return data.playing_next;
-  } catch (error) {
-    console.error('Ошибка:', error);
-    return null;
-  }
-}
-
-// Функция для отображения информации о следующей песне на станции
-async function renderNextSong(station) {
-  const nextSong = await getNextSong(station);
-  const nextSongElement = document.createElement('div');
-  nextSongElement.textContent = `Следующая песня: ${nextSong}`;
-  stationsContainer.appendChild(nextSongElement);
-}
-
-// Функция для получения информации о предыдущей песне на станции
-async function getPrevSong(station) {
-  try {
-    const response = await fetch(`https://de1.api.radio-browser.info/json/url/${station.url}`);
-    if (!response.ok) {
-      throw new Error('Ошибка сети');
-    }
-    const data = await response.json();
-    return data.playing_previous;
-  } catch (error) {
-    console.error('Ошибка:', error);
-    return null;
-  }
-}
-
-// Функция для отображения информации о предыдущей песне на станции
-async function renderPrevSong(station) {
-  const prevSong = await getPrevSong(station);
-  const prevSongElement = document.createElement('div');
-  prevSongElement.textContent = `Предыдущая песня: ${prevSong}`;
-  stationsContainer.appendChild(prevSongElement);
-}
-
-// Обработчик события для ссылок на станции
-stationsContainer.addEventListener('click', event => {
+stationsList.addEventListener('click', event => {
   event.preventDefault();
-  const stationLink = event.target;
-  const station = { name: stationLink.textContent, url: stationLink.href };
-  renderCurrentSong(station);
-  renderNextSong(station);
-  renderPrevSong(station);
+  if (event.target.tagName === 'A') {
+    const stationName = event.target.textContent;
+    const station = matchingStations.find(station => station.name === stationName);
+    if (station) {
+      playStation(station);
+    }
+  }
 });
-
-
-//Код JS не только отображает список станций, но и добавляет функционал плейлиста. После выбора станции из списка пользователь может увидеть информацию о текущей, следующей и предыдущей песнях на станции. Каждая информационная строка отображается в отдельном элементе div.
+audio.addEventListener('play', () => {
+  const stationName = nowPlaying.textContent.split(':')[1].trim();
+  const station = matchingStations.find(station => station.name === stationName);
+  if (station) {
+    fetch(`https://de1.api.radio-browser.info/json/nowplaying/${station.name}`)
+      .then(response => response.json())
+      .then(data => {
+        if (data && data[0]) {
+          nowPlaying.textContent = `Сейчас играет: ${data[0].title}`;
+          if (data[1]) {
+            nextUp.textContent = `Следующий трек: ${data[1].title}`;
+          } else {
+            nextUp.textContent = '';
+          }
+          if (data.length > 2) {
+            history.innerHTML = 'Ранее играло: ';
+            data.slice(2, 5).forEach(track => {
+              const trackLink = document.createElement('a');
+              trackLink.href = track.url;
+              trackLink.target = '_blank';
+              trackLink.textContent = track.title;
+              history.appendChild(trackLink);
+              history.appendChild(document.createTextNode(', '));
+            });
+          } else {
+            history.innerHTML = '';
+          }
+        }
+      });
+  }
+});

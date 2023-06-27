@@ -15,10 +15,10 @@
     <link rel="stylesheet" href="./CSS/styles.css" />
     <title>Document</title>
     <script src="./bootstrap/bootstrap-5.3.0/dist/js/bootstrap.js" defer  ></script>
-    <script src="./libs/gsap/ScrollTrigger.min.js" defer ></script>
+    <!-- <script src="./libs/gsap/ScrollTrigger.min.js" defer ></script>
     <script src="./libs/gsap/ScrollSmoother.min.js"defer ></script>
     <script src="./libs/gsap/gsap.min.js" defer></script>
-    <script src="./JS/smooth.js" defer ></script>
+    <script src="./JS/smooth.js" defer ></script> -->
     <script src="./JS/script.js" defer ></script>
   </head>
 
@@ -98,27 +98,37 @@
           
       
         <div>       
-          <div>
-          <label for="country-select">Страна:</label>
-          <select id="country-select"></select>
-        </div>
-        <div>
-          <label for="genre-select">Жанр:</label>
-          <select id="genre-select"></select>
-        </div>
-        <a id="search-button" href="./stations.html" class="btn btn-light">Найти станции</a>
-        </button>
-       
         
+
+
+
+          
+          <h1>Radio Browser</h1>
+          <label for="countries-select">Страна</label>
+          <select id="countries-select"></select>
+          <br>
+          <label for="genres-select">Жанр</label>
+          <select id="genres-select"></select>
+          <br>
+          <button id="search-button">Поиск</button>
+          <br>
+          <div id="stations-list"></div>
+          <div id="player">
+            <h2>Плеер</h2>
+            <div id="now-playing"></div>
+            <div id="next-up"></div>
+            <div id="history"></div>
+          </div>
+          <audio id="audio-player"></audio>
+
         
-        
+          
       </div>
       
       </div>
     </div>
     
 
-    <script src="./JS/script.js" ></script>
  </body>
 </html>
 
