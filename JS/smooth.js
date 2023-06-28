@@ -26,7 +26,7 @@ if (ScrollTrigger.isTouch !== 1) {
 	itemsL.forEach((item) => {
 		gsap.fromTo(
 			item,
-			{ x: -150, opacity: 0 },
+			{ x: -200, opacity: 0 },
 			{
 				opacity: 1,
 				x: 0,
@@ -71,3 +71,5 @@ if (ScrollTrigger.isTouch !== 1) {
 		}
 	);
 }
+
+	

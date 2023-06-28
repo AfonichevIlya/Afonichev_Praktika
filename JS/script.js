@@ -1,13 +1,9 @@
 const countriesSelect = document.querySelector('#countries-select');
 const genresSelect = document.querySelector('#genres-select');
-
-
 const audio = document.querySelector('#audio-player');
 const nowPlaying = document.querySelector('#now-playing');
 const nextUp = document.querySelector('#next-up');
 const history = document.querySelector('#history');
-
-
 async function krData(strana) {
   try {
     const response = await fetch(`https://de1.api.radio-browser.info/json/stations/bycountry/${strana}`);
@@ -21,7 +17,6 @@ async function krData(strana) {
     return [];
   }
 }
-
 fetch( `https://de1.api.radio-browser.info/json/countries`)
   .then(response => response.json())
   .then(data => {
@@ -41,7 +36,7 @@ fetch( `https://de1.api.radio-browser.info/json/countries`)
   });
   const searchButton = document.querySelector('#search-button');
 const stationsList = document.querySelector('#stations-list');
-
+let matchingStations = [];
 searchButton.addEventListener('click', async () => {
   const country = countriesSelect.value.trim();
   const genre = genresSelect.value.trim();
@@ -50,12 +45,11 @@ searchButton.addEventListener('click', async () => {
     return;
   }
   const stations = await krData(country);
-  const matchingStations = stations.filter(station => station.tags.includes(genre));
-  if (matchingStations.length === 0) {
+  matchingStations = stations.filter(station => station.tags.includes(genre));
+    if (matchingStations.length === 0) {
     stationsList.textContent = `Станций с жанром "${genre}" не найдено`;
     return;
   }
-
   stationsList.innerHTML = '';
   matchingStations.forEach(station => {
     const stationLink = document.createElement('a');
@@ -67,18 +61,6 @@ searchButton.addEventListener('click', async () => {
     stationsList.appendChild(listItem);
   });
 });
-
-
-
-function playStation(station) {
-  audio.src = station.url_resolved;
-  audio.load();
-  audio.play();
-  nowPlaying.textContent = `Сейчас играет: ${station.name}`;
-  nextUp.textContent = '';
-  history.innerHTML = '';
-}
-
 stationsList.addEventListener('click', event => {
   event.preventDefault();
   if (event.target.tagName === 'A') {
@@ -88,35 +70,53 @@ stationsList.addEventListener('click', event => {
       playStation(station);
     }
   }
+
 });
-audio.addEventListener('play', () => {
-  const stationName = nowPlaying.textContent.split(':')[1].trim();
-  const station = matchingStations.find(station => station.name === stationName);
-  if (station) {
-    fetch(`https://de1.api.radio-browser.info/json/nowplaying/${station.name}`)
-      .then(response => response.json())
-      .then(data => {
-        if (data && data[0]) {
-          nowPlaying.textContent = `Сейчас играет: ${data[0].title}`;
-          if (data[1]) {
-            nextUp.textContent = `Следующий трек: ${data[1].title}`;
-          } else {
-            nextUp.textContent = '';
-          }
-          if (data.length > 2) {
-            history.innerHTML = 'Ранее играло: ';
-            data.slice(2, 5).forEach(track => {
-              const trackLink = document.createElement('a');
-              trackLink.href = track.url;
-              trackLink.target = '_blank';
-              trackLink.textContent = track.title;
-              history.appendChild(trackLink);
-              history.appendChild(document.createTextNode(', '));
-            });
-          } else {
-            history.innerHTML = '';
-          }
-        }
-      });
-  }
-});
+
+function playStation(station) {
+  // Set the station name and audio source for the popup window
+  const popupStationName = document.querySelector('#popup-station-name');
+  const popupAudio = document.querySelector('#popup-audio');
+  popupStationName.textContent = `Сейчас играет: ${station.name}`;
+  popupAudio.src = station.url_resolved;
+  popupAudio.load();
+  
+  // Display the popup window
+  const popup = document.querySelector('#popup');
+  popup.style.display = 'block';
+  
+  // Close the popup window when the close button is clicked
+  const popupCloseButton = document.querySelector('#popup-close-button');
+  popupCloseButton.addEventListener('click', () => {
+    popup.style.display = 'none';
+    // Pause the audio when closing the popup
+    popupAudio.pause();
+  });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
