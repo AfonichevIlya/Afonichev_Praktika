@@ -70,22 +70,21 @@ stationsList.addEventListener('click', event => {
       playStation(station);
     }
   }
-
 });
 
-function playStation(station) {
+
+ function playStation(station) {
   // Set the station name and audio source for the popup window
   const popupStationName = document.querySelector('#popup-station-name');
   const popupAudio = document.querySelector('#popup-audio');
   popupStationName.textContent = `Сейчас играет: ${station.name}`;
   popupAudio.src = station.url_resolved;
   popupAudio.load();
-  
-  // Display the popup window
+   // Display the popup window
   const popup = document.querySelector('#popup');
   popup.style.display = 'block';
-  
-  // Close the popup window when the close button is clicked
+   // Create the playlist for the station
+   // Close the popup window when the close button is clicked
   const popupCloseButton = document.querySelector('#popup-close-button');
   popupCloseButton.addEventListener('click', () => {
     popup.style.display = 'none';
@@ -93,7 +92,6 @@ function playStation(station) {
     popupAudio.pause();
   });
 }
-
 
 
 
